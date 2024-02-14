@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Images from './Images'
 
@@ -7,7 +7,7 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState('')
 
   let API_KEY = `5__hOrhuSvuNlKzYw0zWUYLEk7Omf0A93siCEPW7bSA`
-  let pages = 1
+
   const getImages = async () => {
     console.log(`Searching for images of: ${searchTerm}`)
     if (searchTerm !== '' && searchTerm !== undefined && searchTerm !== null) {
@@ -22,6 +22,21 @@ const Home = () => {
       }
     }
   }
+
+  const [pages, setPages] = useState()
+  // change page number
+  const changePage = (value) => {
+    if (searchTerm !== '' && searchTerm !== undefined && searchTerm !== null) {
+      console.log('value before give', value)
+      setPages(value)
+    }
+  }
+
+  // use effect for page check
+  useEffect(() => {
+    console.log(pages)
+    getImages()
+  }, [pages])
 
   return (
     <>
@@ -43,6 +58,23 @@ const Home = () => {
       </div>
       <div>
         <Images />
+      </div>
+      <div className="fixed bottom-0 left-0 w-[100%] h-[30px] bg-zinc-500 flex flex-row text-center items-center justify-center gap-12">
+        <button value={1} onClick={(e) => changePage(e.target.value)}>
+          1
+        </button>
+        <button value={2} onClick={(e) => changePage(e.target.value)}>
+          2
+        </button>
+        <button value={3} onClick={(e) => changePage(e.target.value)}>
+          3
+        </button>
+        <button value={4} onClick={(e) => changePage(e.target.value)}>
+          4
+        </button>
+        <button value={5} onClick={(e) => changePage(e.target.value)}>
+          5
+        </button>
       </div>
     </>
   )
