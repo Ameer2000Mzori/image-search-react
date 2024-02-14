@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-
 import Images from './Images'
 
 const Home = () => {
   // use state
   const [searchTerm, setSearchTerm] = useState('')
   const [data, setData] = useState([])
+  const [pages, setPages] = useState()
 
   let API_KEY = `5__hOrhuSvuNlKzYw0zWUYLEk7Omf0A93siCEPW7bSA`
 
@@ -23,22 +23,16 @@ const Home = () => {
       }
     }
   }
-  useEffect(() => {
-    console.log('user daa after search', data)
-  }, [data])
 
-  const [pages, setPages] = useState()
   // change page number
   const changePage = (value) => {
     if (searchTerm !== '' && searchTerm !== undefined && searchTerm !== null) {
-      console.log('value before give', value)
       setPages(value)
     }
   }
 
   // use effect for page check
   useEffect(() => {
-    console.log(pages)
     getImages()
   }, [pages])
 
@@ -60,12 +54,12 @@ const Home = () => {
           submit
         </button>
       </div>
-      <div>
+      <div className=" h-[90vh] w-[100%] flex flex-row gap-4 text-center items-center justify-center flex-wrap ">
         {data.map((item, index) => (
           <Images key={index} img={item.urls.regular} />
         ))}
       </div>
-      <div className="fixed bottom-0 left-0 w-[100%] h-[30px] bg-zinc-500 flex flex-row text-center items-center justify-center gap-12">
+      <div className="fixed bottom-0 left-0 w-[100%] h-[30px] bg-zinc-500 flex flex-row text-center items-center justify-center gap-12 text-white">
         <button value={1} onClick={(e) => changePage(e.target.value)}>
           1
         </button>
