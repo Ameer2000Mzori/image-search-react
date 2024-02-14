@@ -5,6 +5,7 @@ import Images from './Images'
 const Home = () => {
   // use state
   const [searchTerm, setSearchTerm] = useState('')
+  const [data, setData] = useState([])
 
   let API_KEY = `5__hOrhuSvuNlKzYw0zWUYLEk7Omf0A93siCEPW7bSA`
 
@@ -15,13 +16,16 @@ const Home = () => {
         const res = await fetch(
           `https://api.unsplash.com/search/photos?page=${pages}&per_page=10&query=${searchTerm}&client_id=${API_KEY}`
         )
-        const data = await res.json()
-        console.log(data)
+        const newData = await res.json()
+        setData(newData.results)
       } catch (err) {
         console.log(err)
       }
     }
   }
+  useEffect(() => {
+    console.log('user daa after search', data)
+  }, [data])
 
   const [pages, setPages] = useState()
   // change page number
@@ -57,7 +61,9 @@ const Home = () => {
         </button>
       </div>
       <div>
-        <Images />
+        {data.map((item, index) => (
+          <Images key={index} img={item.urls.regular} />
+        ))}
       </div>
       <div className="fixed bottom-0 left-0 w-[100%] h-[30px] bg-zinc-500 flex flex-row text-center items-center justify-center gap-12">
         <button value={1} onClick={(e) => changePage(e.target.value)}>
