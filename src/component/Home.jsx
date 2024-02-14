@@ -1,6 +1,7 @@
-import React from 'react'
+import Images from './Images'
 
 const Home = () => {
+  // fetch api
   return (
     <>
       <div className="fixed h-[40px] w-[100%] top-0 left-0 bg-zinc-700 flex flex-row items-center justify-center text-center gap-8">
@@ -9,7 +10,9 @@ const Home = () => {
           submit
         </button>
       </div>
-      <div></div>
+      <div>
+        <Images />
+      </div>
     </>
   )
 }
