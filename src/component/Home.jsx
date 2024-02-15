@@ -46,10 +46,12 @@ const Home = () => {
           onChange={(e) => {
             setSearchTerm(e.target.value)
           }}
+          data-cy="input-val"
         />
         <button
           onClick={getImages}
           className="w-[150px] h-[30px] rounded-md bg-zinc-400 hover:bg-zinc-500 text-white active:bg-zinc-600 "
+          data-cy="submit-btn"
         >
           submit
         </button>
