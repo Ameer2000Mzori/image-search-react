@@ -15,6 +15,6 @@ describe('App Component', async () => {
     cy.contains('4').click().wait(1000)
     cy.contains('5').click().wait(1000)
     cy.contains('1').click().wait(1000)
-    cy.get('[data-cy="input-val"]').clear().wait(1000)
+    cy.get('[data-cy="input-val"]').wait(1000).clear()
   })
 })
